@@ -1,0 +1,65 @@
+{
+    "env": {
+      "es2021": true,
+      "node": true,
+      "react-native/react-native": true,
+      "jest": true
+    },
+    "extends": [
+      "plugin:react/recommended",
+      "airbnb",
+      "airbnb/hooks",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "overrides": [],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-native"
+    ],
+    "rules": {
+      // allow .js files to contain JSX code
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      // prevent eslint to complain about the "styles" variable being used before it was defined
+      "no-use-before-define": [
+        "error",
+        {
+          "variables": false
+        }
+      ],
+      // ignore errors for the react-navigation package
+      // "react/prop-types": ["error", { "ignore": ["navigation", "navigation.navigate"] }],
+      "react/prop-types": 0,
+      "object-curly-newline": "off",
+      "camelcase": "off",
+      "linebreak-style": 0
+    },
+    "settings": {
+      "import/core-modules": [
+        "@expo/vector-icons"
+      ],
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": [
+            "node_modules",
+            "src/"
+          ]
+        }
+      }
+    }
+  }
