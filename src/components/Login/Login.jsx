@@ -10,7 +10,7 @@ export default function Login() {
     return (
     <View style={styles.pageContainer}>
       <View style={styles.headerContainer}>
-        <Image style={styles.logo} source={require('./../../assets/hydrant.jpg')} />
+        <Image style={styles.logo} source={require('./../../../assets/hydrant.jpg')} />
         <Text style={styles.headerText}>App Bomberos</Text>
       </View>
       <View style={styles.loginContainer}>

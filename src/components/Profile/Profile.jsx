@@ -10,7 +10,7 @@ export default function Profile() {
     return (
     <View style={styles.pageContainer}>
         <View style={styles.imageContainer}>
-            <Image style={styles.image} source={require('./../../assets/profile.jpg')} />   
+            <Image style={styles.image} source={require('./../../../assets/profile.jpg')} />   
         </View>
         
         <View style={styles.titleContainer}>
