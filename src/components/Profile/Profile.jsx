@@ -3,9 +3,13 @@ import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function Profile() {
+export default function Profile({isLogged, setIsLogged}) {
 
     const navigation = useNavigation();
+
+    const manageLogout = () => {
+        setIsLogged(false);
+    }
 
     return (
     <View style={styles.pageContainer}>
@@ -38,7 +42,7 @@ export default function Profile() {
 
         <View style={styles.buttonContainer}>
             <View style={styles.row}>
-                <Button title="Cerrar Sesión" onPress={() => navigation.navigate('Login')} />
+                <Button title="Cerrar Sesión" onPress={manageLogout} />
                 <Button title="Editar Perfil" />
             </View>
         </View>

@@ -10,9 +10,9 @@ import Profile from './components/Profile/Profile';
 
 const Stack = createStackNavigator();
 
-const loggedIn = false;
-
 export default function Main() {
+    const [isLogged, setIsLogged] = React.useState(false);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -22,10 +22,14 @@ export default function Main() {
           headerShown: false,
         }}
       >
-        {loggedIn ? (
-          <Stack.Screen name="Profile" component={Profile} />
+        {isLogged ? (
+          <Stack.Screen name="Profile">
+            { () => <Profile isLogged={isLogged} setIsLogged={setIsLogged} /> }
+          </Stack.Screen>
         ) : (
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login">
+            { () => <Login isLogged={isLogged} setIsLogged={setIsLogged} /> }
+        </Stack.Screen>
         )}
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function Login() {
+export default function Login({setIsLogged}) {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [showError, setShowError] = useState(false);
 
     const navigation = useNavigation();
+
+    const refUsername = useRef();
+    const refPassword = useRef();
+
+    const handleLogin = () => {
+        if (username === "Admin" && password === "Admin") {
+            setIsLogged(true);
+        } else {
+            setShowError(true);
+        }
+    }
+
+    const errorMessage = () => {
+        if (showError) {
+            return (
+                <Text style={styles.error}>Usuario o contraseña incorrectos</Text>
+            );
+        }
+    }
 
     return (
     <View style={styles.pageContainer}>
@@ -14,9 +37,22 @@ export default function Login() {
         <Text style={styles.headerText}>App Bomberos</Text>
       </View>
       <View style={styles.loginContainer}>
-        <TextInput style={styles.input} placeholder="Usuario" />
-        <TextInput style={styles.input} placeholder="Contraseña" />
-        <Button title="Iniciar Sesión" onPress={() => navigation.navigate('Profile')} />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Usuario" 
+          onChangeText={setUsername} 
+          ref={refUsername}
+          onSubmitEditing={() => refPassword.current.focus()}
+        />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Contraseña" 
+          onChangeText={setPassword} 
+          ref={refPassword}
+          onSubmitEditing={handleLogin}
+        />
+        {errorMessage()}
+        <Button title="Iniciar Sesión" onPress={handleLogin} />
       </View>
     </View>
     ); 
@@ -56,6 +92,9 @@ const styles = StyleSheet.create({
       borderColor: 'gray',
       borderWidth: 1,
       margin: 10,
+    },
+    error: {
+      color: 'red',
     },
   
   });
